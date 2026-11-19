@@ -23,6 +23,32 @@ values. Dipstick finds them before production does. Natural feed for Microscope 
    with a fix recipe.
 4. **Microscope integration.** Expose findings as Microscope checks.
 
+## Status (2026-11-18, overnight)
+- Phase 1 static scan: **done** (AST, 17 rules, constructor captures joined with bindings, Blade, ignore/exclude).
+- Phase 2 runtime probe: **done**, sandboxed child process, per site, rotating visitors, optional page render;
+  request/user/site leaks, static growth/churn, memory growth. Octane itself is simulated, not installed.
+- Phase 3 report: **done** (admin-only CP report + history, queued audits, `craft:dipstick:scan` with CI exit
+  codes and JSON, `craft:dipstick:probe`), remediation-first findings translated at display (en + fr).
+- Phase 4 Microscope: **deferred** — Microscope has no Craft 6 port yet. Dipstick fires `AuditCompleted` with
+  its findings for it to consume.
+- GraphQL `dipstickReadiness` (summary only, explicit schema component); Twig/Blade `dipstick.readiness()` (admins only).
+- Checks: Pest 20, harness `tests/Harness/check.sh` 64/0 (multi-site with its own `dipstickfr` site).
+
 ## Definition of done (every phase)
 `bin/port-check craft-dipstick` green · Pest suite green · Pint + Larastan level 6 clean · installs, uninstalls and
 reinstalls cleanly in the harness · CP pages smoke-tested with `bin/cp-session`.
+
+## Questions for Justin
+1. Icon: there's no `src/icon.jpg` mockup, so the icon is still the slate placeholder “D” (now a path, with a
+   matching `resources/icon-mask.svg`). Can you make artwork? (A dipstick/oil-drop idea fits the name.)
+2. GraphQL: Dipstick is an admin tool, so `dipstickReadiness` is deliberately thin (score, grade, counts, date;
+   explicit schema permission; admins only for user tokens). Keep it, or drop GraphQL entirely?
+3. Templates: `dipstick.readiness()` / `$dipstick->readiness()` returns the summary to signed-in admins only
+   (for a badge). Keep, or remove the front-end surface entirely?
+4. The probe renders each site's home page by default (sandboxed: DB rolled back, mail/queue/HTTP faked). It
+   can't stop file writes or non-Laravel network calls. Default on or off?
+5. Scope: Dipstick audits the app + installed Craft plugins, not other Composer packages or Craft core.
+   (Core itself keeps per-request state in singletons, e.g. `Sites::$currentSite` — worth reporting upstream
+   before Craft supports Octane.) Want a "scan other packages" option?
+6. Free + Craft License confirmed?
+7. Microscope integration waits for a Craft 6 Microscope. OK to leave as the `AuditCompleted` event for now?
