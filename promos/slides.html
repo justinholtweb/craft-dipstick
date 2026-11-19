@@ -9,13 +9,13 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
-    --charcoal: #0f0f1a;
-    --charcoal-light: #1a1a2e;
-    --charcoal-lighter: #252540;
-    --accent: #5B4DB0;
-    --accent-light: #B4A9F0;
+    --charcoal: #14110d;
+    --charcoal-light: #1f1a14;
+    --charcoal-lighter: #2b241b;
+    --accent: #A8691F;
+    --accent-light: #F0C27A;
     --gold: #f5b041;
-    --off-white: #f0f0f5;
+    --off-white: #f5f2ec;
   }
 
   html { background: #000; }
@@ -33,11 +33,11 @@
     height: 1080px;
     overflow: hidden;
     background:
-      radial-gradient(ellipse at 85% 15%, rgba(91, 77, 176, 0.34) 0%, transparent 40%),
-      radial-gradient(ellipse at 65% 5%,  rgba(180, 169, 240, 0.14) 0%, transparent 35%),
+      radial-gradient(ellipse at 85% 15%, rgba(217, 149, 60, 0.34) 0%, transparent 40%),
+      radial-gradient(ellipse at 65% 5%,  rgba(240, 194, 122, 0.14) 0%, transparent 35%),
       radial-gradient(ellipse at 15% 85%, rgba(245, 176, 65, 0.07) 0%, transparent 40%),
-      radial-gradient(ellipse at 35% 95%, rgba(91, 77, 176, 0.14) 0%, transparent 35%),
-      linear-gradient(135deg, #0f0f1a 0%, #11101f 30%, #15132a 60%, #0f0f1a 100%);
+      radial-gradient(ellipse at 35% 95%, rgba(217, 149, 60, 0.14) 0%, transparent 35%),
+      linear-gradient(135deg, #14110d 0%, #17130e 30%, #1c1710 60%, #14110d 100%);
   }
 
   /* Oversized watermark: the mark with the tile stripped, because a rounded square at this
@@ -86,7 +86,7 @@
     font-weight: 500;
     letter-spacing: 0.32em;
     text-transform: uppercase;
-    color: rgba(240, 240, 245, 0.62);
+    color: rgba(245, 242, 236, 0.62);
     margin-bottom: 34px;
   }
   .eyebrow .rule {
@@ -104,7 +104,7 @@
   }
 
   .gradient-text {
-    background: linear-gradient(100deg, #7B6CC4 0%, #B4A9F0 40%, #E2DDFB 68%, #7B6CC4 100%);
+    background: linear-gradient(100deg, #D9953C 0%, #F0C27A 40%, #FBE8C8 68%, #D9953C 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -113,7 +113,7 @@
   .lede {
     font-size: 34px;
     line-height: 1.5;
-    color: rgba(240, 240, 245, 0.72);
+    color: rgba(245, 242, 236, 0.72);
   }
 
   .mono {
@@ -127,7 +127,7 @@
   .cover .tagline {
     font-size: 46px;
     line-height: 1.25;
-    color: rgba(240, 240, 245, 0.78);
+    color: rgba(245, 242, 236, 0.78);
     margin-bottom: 46px;
     max-width: 900px;
   }
@@ -139,8 +139,8 @@
     text-transform: uppercase;
     padding: 14px 26px;
     border-radius: 999px;
-    border: 2px solid rgba(180, 169, 240, 0.45);
-    color: rgba(240, 240, 245, 0.85);
+    border: 2px solid rgba(240, 194, 122, 0.45);
+    color: rgba(245, 242, 236, 0.85);
   }
   .badge.free { background: var(--accent); border-color: var(--accent); color: #fff; }
   .cover .mark { flex: 0 0 auto; }
@@ -158,7 +158,7 @@
     gap: 16px;
     font-size: 25px;
     line-height: 1.4;
-    color: rgba(240, 240, 245, 0.6);
+    color: rgba(245, 242, 236, 0.6);
   }
   .points li svg { flex: 0 0 auto; margin-top: 4px; }
 
@@ -172,7 +172,7 @@
   }
   .shot .chrome {
     height: 40px;
-    background: #2a2a3e;
+    background: #2e2820;
     background-image:
       radial-gradient(circle at 24px 20px, #ff5f57 6px, transparent 6.5px),
       radial-gradient(circle at 48px 20px, #ffbd2e 6px, transparent 6.5px),
@@ -185,7 +185,7 @@
     font-size: 22px;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: rgba(240, 240, 245, 0.5);
+    color: rgba(245, 242, 236, 0.5);
     margin-bottom: 14px;
   }
   .caption b { color: var(--accent-light); font-weight: 600; }
@@ -208,7 +208,7 @@
     height: 92px;
     border-radius: 999px;
     background: var(--accent);
-    box-shadow: 0 12px 40px rgba(91, 77, 176, 0.55);
+    box-shadow: 0 12px 40px rgba(217, 149, 60, 0.55);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -227,11 +227,11 @@
   .closing .cell {
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 14px;
-    background: rgba(37, 37, 64, 0.42);
+    background: rgba(43, 36, 27, 0.42);
     padding: 28px 32px;
   }
   .closing .cell b { display: block; font-size: 28px; margin-bottom: 8px; color: var(--off-white); }
-  .closing .cell span { font-size: 23px; line-height: 1.45; color: rgba(240, 240, 245, 0.58); }
+  .closing .cell span { font-size: 23px; line-height: 1.45; color: rgba(245, 242, 236, 0.58); }
 
   /* ---- layout diagram slide -------------------------------------------- */
   .diagram {
@@ -242,17 +242,17 @@
     width: 800px;
     border-radius: 14px;
     border: 1px solid rgba(255, 255, 255, 0.09);
-    background: rgba(15, 15, 26, 0.72);
+    background: rgba(20, 17, 13, 0.72);
     padding: 44px 48px;
     font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
     font-size: 26px;
     line-height: 1.65;
-    color: rgba(240, 240, 245, 0.72);
+    color: rgba(245, 242, 236, 0.72);
     white-space: pre;
   }
   .diagram .tab { color: var(--off-white); font-weight: 600; }
   .diagram .marker { color: var(--accent-light); }
-  .diagram .dim { color: rgba(240, 240, 245, 0.38); }
+  .diagram .dim { color: rgba(245, 242, 236, 0.38); }
   .diagram .gold { color: var(--gold); }
 
   /* ---- footer lockup --------------------------------------------------- */
@@ -265,10 +265,10 @@
     align-items: center;
     gap: 16px;
     font-size: 22px;
-    color: rgba(240, 240, 245, 0.42);
+    color: rgba(245, 242, 236, 0.42);
   }
   .footer img { width: 40px; height: 40px; border-radius: 9px; }
-  .footer b { color: rgba(240, 240, 245, 0.72); font-weight: 600; }
+  .footer b { color: rgba(245, 242, 236, 0.72); font-weight: 600; }
 
   /* Only render the requested slide when screenshotting */
   body.single .slide { display: none; }
@@ -287,35 +287,35 @@
   .panel {
     position: absolute; right: 120px; top: 50%; transform: translateY(-50%);
     width: 960px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.09);
-    background: rgba(15, 15, 26, 0.78); padding: 38px 44px;
+    background: rgba(20, 17, 13, 0.78); padding: 38px 44px;
     font-family: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
-    font-size: 22px; line-height: 1.75; color: rgba(240,240,245,0.70); white-space: pre;
+    font-size: 22px; line-height: 1.75; color: rgba(245, 242, 236,0.70); white-space: pre;
   }
-  .panel .c { color: rgba(240,240,245,0.38); }
+  .panel .c { color: rgba(245, 242, 236,0.38); }
   .panel .k { color: var(--accent-light); }
   .panel .s { color: #9fe0b8; }
-  .panel .h { color: rgba(240,240,245,0.42); font-size: 17px; letter-spacing: 0.14em; text-transform: uppercase; }
+  .panel .h { color: rgba(245, 242, 236,0.42); font-size: 17px; letter-spacing: 0.14em; text-transform: uppercase; }
   .panel .bad { color: #ff8b8b; }
   .panel .warn { color: #f8d48a; }
   .panel .ok { color: #5ee0a0; }
   .states { position: absolute; right: 120px; top: 50%; transform: translateY(-50%); width: 900px; display: flex; flex-direction: column; gap: 18px; }
-  .state { display: flex; align-items: center; justify-content: space-between; border-radius: 12px; border: 1px solid rgba(255,255,255,0.09); background: rgba(15,15,26,0.72); padding: 22px 32px; font-size: 26px; }
+  .state { display: flex; align-items: center; justify-content: space-between; border-radius: 12px; border: 1px solid rgba(255,255,255,0.09); background: rgba(20, 17, 13,0.72); padding: 22px 32px; font-size: 26px; }
   .state b { color: var(--off-white); font-weight: 600; }
   .state span { font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace; font-size: 22px; }
   .state.in span { color: #5ee0a0; }
-  .state.out span { color: rgba(240,240,245,0.42); }
+  .state.out span { color: rgba(245, 242, 236,0.42); }
   .where .inner { flex-direction: column; align-items: flex-start; justify-content: center; }
   .where h2 { font-size: 96px; margin-bottom: 26px; }
   .where .lede { max-width: 1300px; font-size: 31px; margin-bottom: 50px; }
   .where .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; width: 1660px; }
   .where .card { border-radius: 14px; padding: 34px 36px; }
   .where .card b { display: flex; align-items: center; gap: 14px; font-size: 32px; margin-bottom: 12px; color: var(--off-white); }
-  .where .card span { display: block; font-size: 23px; line-height: 1.5; color: rgba(240,240,245,0.6); }
+  .where .card span { display: block; font-size: 23px; line-height: 1.5; color: rgba(245, 242, 236,0.6); }
   .where .card.new { border-color: var(--accent-light); }
   .where .card .tag { font-size: 16px; font-weight: 700; font-style: normal; letter-spacing: 0.14em; text-transform: uppercase; color: #fff; border-radius: 999px; padding: 6px 14px; margin-left: auto; }
-  .where .alone { margin-top: 38px; font-size: 24px; color: rgba(240,240,245,0.45); }
-  .where .alone b { color: rgba(240,240,245,0.7); font-weight: 600; }
-  .where .card { border: 1px solid; border-color: rgba(180,169,240,0.32); background: rgba(91,77,176,0.20); }
+  .where .alone { margin-top: 38px; font-size: 24px; color: rgba(245, 242, 236,0.45); }
+  .where .alone b { color: rgba(245, 242, 236,0.7); font-weight: 600; }
+  .where .card { border: 1px solid; border-color: rgba(240, 194, 122,0.32); background: rgba(217, 149, 60,0.20); }
   .where .card .tag { background: var(--accent); }
 </style>
 </head>
@@ -347,9 +347,9 @@
       <h2>Reads your code,<br>never runs it</h2>
       <p class="lede" style="max-width: 600px;">Your app, every installed plugin and your Blade templates.</p>
       <ul class="points">
-        <li><svg class="ck" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B4A9F0" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg> <span class="t">Singletons that keep the user or site</span></li>
-        <li><svg class="ck" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B4A9F0" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg> <span class="t">Static caches that grow every request</span></li>
-        <li><svg class="ck" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B4A9F0" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg> <span class="t">Superglobals, native headers, exit</span></li>
+        <li><svg class="ck" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F0C27A" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg> <span class="t">Singletons that keep the user or site</span></li>
+        <li><svg class="ck" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F0C27A" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg> <span class="t">Static caches that grow every request</span></li>
+        <li><svg class="ck" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F0C27A" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg> <span class="t">Superglobals, native headers, exit</span></li>
       </ul>
     </div>
   </div>
@@ -377,8 +377,8 @@ class Basket
       <h2>Acts like an<br>Octane worker</h2>
       <p class="lede" style="max-width: 600px;">Several requests per site, different visitors, one process.</p>
       <ul class="points">
-        <li><svg class="ck" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B4A9F0" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg> <span class="t">Every site probed in turn</span></li>
-        <li><svg class="ck" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B4A9F0" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg> <span class="t">Sandboxed: database rolled back, mail and HTTP faked</span></li>
+        <li><svg class="ck" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F0C27A" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg> <span class="t">Every site probed in turn</span></li>
+        <li><svg class="ck" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F0C27A" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg> <span class="t">Sandboxed: database rolled back, mail and HTTP faked</span></li>
       </ul>
     </div>
   </div>
@@ -400,8 +400,8 @@ class Basket
       <h2>A fix for<br>every finding</h2>
       <p class="lede" style="max-width: 600px;">Why it matters under Octane, and the code to change.</p>
       <ul class="points">
-        <li><svg class="ck" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B4A9F0" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg> <span class="t">Admin-only report in the control panel</span></li>
-        <li><svg class="ck" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B4A9F0" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg> <span class="t">Exit codes and JSON for CI</span></li>
+        <li><svg class="ck" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F0C27A" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg> <span class="t">Admin-only report in the control panel</span></li>
+        <li><svg class="ck" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F0C27A" stroke-width="3"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg> <span class="t">Exit codes and JSON for CI</span></li>
       </ul>
     </div>
   </div>

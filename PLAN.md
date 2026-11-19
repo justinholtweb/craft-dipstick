@@ -39,8 +39,8 @@ values. Dipstick finds them before production does. Natural feed for Microscope 
 reinstalls cleanly in the harness · CP pages smoke-tested with `bin/cp-session`.
 
 ## Questions for Justin
-1. Icon: there's no `src/icon.jpg` mockup, so the icon is still the slate placeholder “D” (now a path, with a
-   matching `resources/icon-mask.svg`). Can you make artwork? (A dipstick/oil-drop idea fits the name.)
+1. ~~Icon~~ — resolved 2026-11-19: traced from Justin's `src/icon.jpg` (white dipstick on amber #D9953C);
+   promos and the marketing page rebranded to match.
 2. GraphQL: Dipstick is an admin tool, so `dipstickReadiness` is deliberately thin (score, grade, counts, date;
    explicit schema permission; admins only for user tokens). Keep it, or drop GraphQL entirely?
 3. Templates: `dipstick.readiness()` / `$dipstick->readiness()` returns the summary to signed-in admins only

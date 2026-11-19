@@ -9,8 +9,8 @@ Marketing images for the Dipstick listing on the Craft Plugin Store.
 
 Output: `out/dipstick-promo-N.jpg`, 1920×1080 (rendered at 2× in headless Chrome, downsampled).
 **JPEG, never PNG.** `fonts.css` is generated and gitignored. The cover and closing slide carry the Craft 6
-beta caution, and every footer says "Craft CMS 6 (beta)". The icon is still the placeholder "D": rebuild when
-there's artwork.
+beta caution, and every footer says "Craft CMS 6 (beta)". The icon and watermark come from `resources/icon.svg` /
+`resources/icon-mask.svg` (traced from `src/icon.jpg`); rebuild if the icon changes.
 
 | # | Slide |
 | --- | --- |
