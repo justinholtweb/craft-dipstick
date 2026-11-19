@@ -1,0 +1,110 @@
+{# Dipstick → the latest (or a chosen) audit #}
+<style>
+  .dipstick { display: grid; gap: 1.5rem; }
+  .dipstick-summary { display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center; }
+  .dipstick-score { font-size: 2.5rem; font-weight: 700; line-height: 1; }
+  .dipstick-grade { display: inline-block; min-width: 2.25rem; padding: .35rem .5rem; border-radius: .4rem; font-weight: 700; text-align: center; color: #fff; background: #6b7280; }
+  .dipstick-grade[data-grade="A"] { background: #15803d; } .dipstick-grade[data-grade="B"] { background: #4d7c0f; }
+  .dipstick-grade[data-grade="C"] { background: #a16207; } .dipstick-grade[data-grade="D"] { background: #c2410c; } .dipstick-grade[data-grade="F"] { background: #b91c1c; }
+  .dipstick-pill { display: inline-block; padding: .1rem .5rem; border-radius: 999px; font-size: .75rem; font-weight: 600; text-transform: uppercase; letter-spacing: .03em; }
+  .dipstick-pill[data-severity="critical"] { background: #fee2e2; color: #991b1b; } .dipstick-pill[data-severity="warning"] { background: #fef3c7; color: #92400e; }
+  .dipstick-pill[data-severity="notice"] { background: #e0f2fe; color: #075985; } .dipstick-pill[data-severity="pass"] { background: #dcfce7; color: #166534; }
+  .dipstick-finding { border: 1px solid rgba(127,127,127,.25); border-radius: .5rem; padding: .75rem 1rem; }
+  .dipstick-finding summary { cursor: pointer; display: flex; gap: .75rem; align-items: baseline; flex-wrap: wrap; }
+  .dipstick-finding h3 { margin: 0; font-size: 1rem; }
+  .dipstick-body { display: grid; gap: .75rem; margin-top: .75rem; }
+  .dipstick-body pre { white-space: pre-wrap; overflow-x: auto; }
+  .dipstick-evidence { width: 100%; border-collapse: collapse; font-size: .85rem; }
+  .dipstick-evidence th, .dipstick-evidence td { text-align: left; padding: .3rem .6rem .3rem 0; vertical-align: top; border-top: 1px solid rgba(127,127,127,.15); }
+  .dipstick-evidence code { word-break: break-all; }
+  .dipstick-muted { opacity: .7; font-size: .85rem; }
+</style>
+<div class="dipstick" id="dipstick-report">
+  <div class="dipstick-summary">
+    {% if scan and scan.status == 'done' %}
+      <div><span class="dipstick-score" id="dipstick-score">{{ scan.score }}</span><span class="dipstick-muted">/100</span></div>
+      <span class="dipstick-grade" data-grade="{{ scan.grade }}" id="dipstick-grade">{{ scan.grade }}</span>
+      <div>
+        <strong id="dipstick-verdict" data-ready="{{ scan.ready ? 1 : 0 }}">{{ scan.ready ? 'No critical or warning findings.'|t('dipstick') : 'Fix the critical and warning findings before running on Octane.'|t('dipstick') }}</strong>
+        <div class="dipstick-muted">
+          {{ '{critical} critical · {warning} warning · {notice} notice · {pass} passed'|t('dipstick', scan.counts) }}
+          · {{ scan.dateCreated|datetime('short') }}
+          · {{ scan.probed ? 'static scan + runtime probe'|t('dipstick') : 'static scan only'|t('dipstick') }}
+        </div>
+        <div class="dipstick-muted">
+          {{ '{php} PHP files, {blade} Blade and {twig} Twig templates'|t('dipstick', {php: scan.meta['files.php'] ?? 0, blade: scan.meta['files.blade'] ?? 0, twig: scan.meta['files.twig'] ?? 0}) }}
+          {% if scan.probed %}· {{ '{requests} simulated requests across {sites} sites'|t('dipstick', {requests: scan.meta['probe.requests'] ?? 0, sites: scan.meta['probe.sites'] ?? 0}) }}{% endif %}
+          {% if not (scan.meta.octane ?? false) %}· {{ 'Octane isn’t installed; the probe simulated its workers.'|t('dipstick') }}{% endif %}
+        </div>
+      </div>
+    {% elseif scan and scan.status == 'failed' %}
+      <p class="error" id="dipstick-error">{{ scan.error ?: 'The audit failed.'|t('dipstick') }}</p>
+    {% elseif scan %}
+      <p id="dipstick-busy">{{ 'An audit is queued or running. Reload this page in a moment.'|t('dipstick') }}</p>
+    {% else %}
+      <p id="dipstick-empty">{{ 'No audits yet. Run one to see how ready this site is for Octane.'|t('dipstick') }}</p>
+    {% endif %}
+    <form method="post" action="{{ runUrl }}" style="margin-left:auto">{{ csrf_field() }}
+      <button type="submit" class="btn submit"{% if busy %} disabled{% endif %}>{{ 'Run an audit'|t('dipstick') }}</button>
+    </form>
+  </div>
+
+  <p class="dipstick-muted">{{ 'Dipstick reads code without running it, then simulates requests in a separate, sandboxed process. It finds the common ways state leaks between requests; it can’t prove there are none. Craft 6 is in beta: test on staging before running Octane in production.'|t('dipstick') }}</p>
+
+  {% for f in findings %}
+    <details class="dipstick-finding" data-rule="{{ f.rule }}" data-severity="{{ f.severity }}" data-source="{{ f.source }}" data-site="{{ f.site }}" data-fingerprint="{{ f.fingerprint }}"{% if f.severity == 'critical' %} open{% endif %}>
+      <summary>
+        <span class="dipstick-pill" data-severity="{{ f.severity }}">{{ f.severityLabel }}</span>
+        <h3>{{ f.title }}</h3>
+        <span class="dipstick-muted">{{ f.source }}{% if f.site %} · {{ f.site }}{% endif %}</span>
+      </summary>
+      <div class="dipstick-body">
+        {% if f.summary %}<p>{{ f.summary }}</p>{% endif %}
+        {% if f.impact %}<div><strong>{{ 'Why it matters'|t('dipstick') }}</strong><p>{{ f.impact }}</p></div>{% endif %}
+        {% if f.remediation %}<div><strong>{{ 'How to fix it'|t('dipstick') }}</strong>{{ f.remediation|md('gfm') }}</div>{% endif %}
+        {% if f.evidence is not empty %}
+          <table class="dipstick-evidence">
+            <tbody>
+              {% for row in f.evidence %}
+                <tr>
+                  {% if row.code is defined %}
+                    <td><code>{{ row.file }}{% if row.line %}:{{ row.line }}{% endif %}</code><div class="dipstick-muted">{{ row.symbol }}</div></td>
+                    <td><code>{{ row.code }}</code></td>
+                    <td class="dipstick-muted" title="{{ 'Fingerprint (add it to Ignore to accept this line)'|t('dipstick') }}"><code>{{ row.fingerprint }}</code></td>
+                  {% else %}
+                    <td colspan="3">
+                      {% for key, value in row %}{% if value is not same as(null) and value != '' %}<span class="dipstick-muted">{{ key }}:</span> <code>{{ value }}</code>{% if not loop.last %} · {% endif %}{% endif %}{% endfor %}
+                    </td>
+                  {% endif %}
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          {% if f.occurrences > f.evidence|length %}<p class="dipstick-muted">{{ 'And {n} more.'|t('dipstick', {n: f.occurrences - f.evidence|length}) }}</p>{% endif %}
+        {% endif %}
+        <p class="dipstick-muted">
+          {{ 'Fingerprint'|t('dipstick') }}: <code>{{ f.fingerprint }}</code>
+          {% if f.docsUrl %}· <a href="{{ f.docsUrl }}" target="_blank" rel="noopener">{{ 'Octane docs'|t('dipstick') }}</a>{% endif %}
+        </p>
+      </div>
+    </details>
+  {% endfor %}
+
+  {% if recent|length > 1 %}
+    <div>
+      <h2>{{ 'Recent audits'|t('dipstick') }}</h2>
+      <table class="dipstick-evidence" id="dipstick-recent">
+        <tbody>
+          {% for r in recent %}
+            <tr>
+              <td><a href="{{ cpUrl('dipstick/audits/' ~ r.id) }}">#{{ r.id }}</a></td>
+              <td>{{ r.dateCreated|datetime('short') }}</td>
+              <td>{{ r.status == 'done' ? r.score ~ '/100 (' ~ r.grade ~ ')' : r.status }}</td>
+              <td class="dipstick-muted">{{ r.trigger == 'cp' ? 'Control panel'|t('dipstick') : 'Command line'|t('dipstick') }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% endif %}
+</div>

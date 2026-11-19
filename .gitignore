@@ -4,3 +4,4 @@ composer.lock
 /.ddev
 .phpunit.cache/
 .playwright-mcp/
+.scratch
