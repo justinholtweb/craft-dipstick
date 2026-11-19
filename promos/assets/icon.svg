@@ -1,0 +1,6 @@
+<!--
+  Placeholder plugin icon, kept until there's artwork (no src/icon.jpg yet): a white "D" on a slate
+  tile (#334155), rounded like the family's tiles (rx 22.4 on 100). The letter is a path, not text,
+  so it renders the same without fonts. resources/icon-mask.svg is the same letter without the tile.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" role="img" aria-label="Dipstick"><rect width="100" height="100" fill="#334155" rx="22.4"/><path fill="#FEFEFE" fill-rule="evenodd" d="M30 22h20a28 28 0 0 1 0 56H30zM42 33.5v33h8a16.5 16.5 0 0 0 0-33z"/></svg>
