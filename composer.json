@@ -60,6 +60,7 @@
         "sort-packages": true
     },
     "support": {
+        "docs": "https://justinholt.com/plugins/craft-dipstick/docs",
         "issues": "https://github.com/justinholtweb/craft-dipstick/issues",
         "source": "https://github.com/justinholtweb/craft-dipstick"
     },
@@ -68,7 +69,7 @@
         "handle": "dipstick",
         "developer": "Justin Holt",
         "developerUrl": "https://justinholt.com",
-        "documentationUrl": "https://github.com/justinholtweb/craft-dipstick",
+        "documentationUrl": "https://justinholt.com/plugins/craft-dipstick/docs",
         "changelogUrl": "https://raw.githubusercontent.com/justinholtweb/craft-dipstick/main/CHANGELOG.md",
         "class": "JustinHoltWeb\\Dipstick\\Plugin"
     }
