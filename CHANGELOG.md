@@ -1,6 +1,11 @@
 # Release Notes for Dipstick
 
-## 6.0.0-beta.1 - Unreleased
+## 6.0.0-beta.2 - 2026-11-21
+
+### Changed
+- The docs FAQ now compares Dipstick with Microscope and Heat.
+
+## 6.0.0-beta.1 - 2026-11-19
 
 > Dipstick is for Craft 6, which is in beta. Use caution on production.
 
